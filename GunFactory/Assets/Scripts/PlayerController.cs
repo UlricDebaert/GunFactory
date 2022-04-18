@@ -8,6 +8,10 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public Rigidbody2D rb;
 
+    [Header("Jump")]
+    public float jumpForce;
+    public float airDragMultiplier;
+
     [Header("Ground Check")]
     public Transform groundCheckPos;
     public float groundCheckRadius;
@@ -16,6 +20,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Graphics")]
     public SpriteRenderer playerSprite;
+    public Animator anim;
+    string currentAnimation;
+    const string playerIdle = "PlayerIdle_Anim";
+    const string playerJump = "PlayerJump_Anim";
+    const string playerWalk = "PlayerWalk_Anim";
 
     float horizontalInput;
 
@@ -34,16 +43,40 @@ public class PlayerController : MonoBehaviour
 
     void CheckInput()
     {
-        if (Input.GetButton("Horizontal"))
+        if (isGrounded)
         {
-            horizontalInput = Input.GetAxisRaw("Horizontal");
+            if (Input.GetButton("Horizontal"))
+            {
+                horizontalInput = Input.GetAxisRaw("Horizontal");
 
-            rb.velocity = new Vector2(speed * horizontalInput, rb.velocity.y);
+                rb.velocity = new Vector2(speed * horizontalInput, rb.velocity.y);
+
+                ChangeAnimationState(playerWalk);
+            }
+
+            if (!Input.GetButton("Horizontal"))
+            {
+                rb.velocity = new Vector2(0, rb.velocity.y);
+
+                ChangeAnimationState(playerIdle);
+            }
         }
 
-        if(!Input.GetButton("Horizontal") && isGrounded)
+        if (!isGrounded)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            if (Input.GetButton("Horizontal"))
+            {
+                horizontalInput = Input.GetAxisRaw("Horizontal");
+
+                rb.velocity = new Vector2(speed * horizontalInput * airDragMultiplier, rb.velocity.y);
+            }
+
+            if (!Input.GetButton("Horizontal"))
+            {
+                rb.velocity = new Vector2(rb.velocity.x*airDragMultiplier, rb.velocity.y);
+            }
+
+            ChangeAnimationState(playerJump);
         }
 
         if (horizontalInput>0)
@@ -54,6 +87,16 @@ public class PlayerController : MonoBehaviour
         {
             playerSprite.flipX = true;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Jump();
+        }
+    }
+
+    void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
     }
 
     private void CheckSurroundings()
@@ -64,5 +107,16 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);
+    }
+
+    void ChangeAnimationState(string newAnimation)
+    {
+        print("change anim to" + newAnimation);
+        
+        if (currentAnimation == newAnimation) return;
+
+        anim.Play(newAnimation);
+
+        currentAnimation = newAnimation;
     }
 }
