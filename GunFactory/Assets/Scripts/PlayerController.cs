@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        UpdateGraphicLookingDir();
+    }
+
+    private void FixedUpdate()
+    {
         CheckInput();
         CheckSurroundings();
     }
@@ -79,14 +84,14 @@ public class PlayerController : MonoBehaviour
             ChangeAnimationState(playerJump);
         }
 
-        if (horizontalInput>0)
-        {
-            playerSprite.flipX = false;
-        }
-        if (horizontalInput<0)
-        {
-            playerSprite.flipX = true;
-        }
+        //if (horizontalInput>0)
+        //{
+        //    playerSprite.flipX = false;
+        //}
+        //if (horizontalInput<0)
+        //{
+        //    playerSprite.flipX = true;
+        //}
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -97,6 +102,21 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+    }
+
+    void UpdateGraphicLookingDir()
+    {
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        difference.Normalize();
+        float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        if (rotation_z >= -90 && rotation_z <= 90)
+        {
+            playerSprite.flipX = false;
+        }
+        else
+        {
+            playerSprite.flipX = true;
+        }
     }
 
     private void CheckSurroundings()
@@ -110,9 +130,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void ChangeAnimationState(string newAnimation)
-    {
-        print("change anim to" + newAnimation);
-        
+    {        
         if (currentAnimation == newAnimation) return;
 
         anim.Play(newAnimation);
