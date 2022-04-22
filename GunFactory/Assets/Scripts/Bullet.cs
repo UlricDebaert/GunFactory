@@ -16,7 +16,6 @@ public class Bullet : MonoBehaviour
         //}
         if ((hittableLayers & (1 << collision.transform.gameObject.layer)) > 0)
         {
-            print("hit" + collision.gameObject.layer);
             DestroyItself();
         }
     }

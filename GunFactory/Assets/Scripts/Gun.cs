@@ -21,6 +21,9 @@ public class Gun : MonoBehaviour
         gunSprite = GetComponent<SpriteRenderer>();
         canShoot = false;
         currentAmmoCount = gunStats.magazine;
+        UpdateAmmoCount();
+        if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null)
+            AmmoCountPannel.instance.ammoLoadingIcon.fillAmount = 0.0f;
     }
 
 
@@ -55,6 +58,7 @@ public class Gun : MonoBehaviour
         {
             reloadTimer = gunStats.reloadTime;
         }
+        UpdateAmmoCount();
     }
 
     void UpdateFireRate()
@@ -73,9 +77,17 @@ public class Gun : MonoBehaviour
         {
             reloadTimer -= Time.deltaTime;
 
+            if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null && reloadTimer > 0.0f) 
+                AmmoCountPannel.instance.ammoLoadingIcon.fillAmount = 1-reloadTimer/gunStats.reloadTime;
+
             if (reloadTimer <= 0.0f)
             {
                 currentAmmoCount = gunStats.magazine;
+
+                if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null) 
+                    AmmoCountPannel.instance.ammoLoadingIcon.fillAmount = 0.0f;
+
+                UpdateAmmoCount();
             }
         }
     }
@@ -97,6 +109,14 @@ public class Gun : MonoBehaviour
         else
         {
             gunSprite.flipY = false;
+        }
+    }
+
+    void UpdateAmmoCount()
+    {
+        if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoCounterText != null)
+        {
+            AmmoCountPannel.instance.ammoCounterText.text = currentAmmoCount.ToString() + " / " + gunStats.magazine.ToString();
         }
     }
 }

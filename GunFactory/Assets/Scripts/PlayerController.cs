@@ -37,11 +37,11 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         UpdateGraphicLookingDir();
+        CheckInput();
     }
 
     private void FixedUpdate()
     {
-        CheckInput();
         CheckSurroundings();
     }
 
@@ -95,6 +95,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            print("jump input");
             Jump();
         }
     }
