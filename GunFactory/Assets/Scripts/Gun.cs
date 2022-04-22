@@ -48,8 +48,8 @@ public class Gun : MonoBehaviour
     {
         for (int i = 0; i < firePoints.Length; i++)
         {
-            GameObject bullet = Instantiate(gunStats.bulletPrefab, firePoints[i].position,gameObject.transform.localRotation);
-            bullet.GetComponent<Rigidbody2D>().AddForce(gunStats.bulletSpeed * transform.right.normalized, ForceMode2D.Impulse);
+            GameObject bullet = Instantiate(gunStats.bulletPrefab, firePoints[i].position, gameObject.transform.rotation * Quaternion.Euler(0.0f, 0.0f, Random.Range(-gunStats.bulletAngleShift, gunStats.bulletAngleShift)));
+            bullet.GetComponent<Rigidbody2D>().AddForce(gunStats.bulletSpeed * bullet.transform.right.normalized, ForceMode2D.Impulse);
         }
         canShoot = false;
         fireRateTimer = gunStats.fireRate;

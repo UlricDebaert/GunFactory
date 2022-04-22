@@ -15,6 +15,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
   fireRate: 0.15
   bulletSpeed: 30
+  bulletAngleShift: 10
   magazine: 30
   reloadTime: 1
   shootAudio: {fileID: 0}

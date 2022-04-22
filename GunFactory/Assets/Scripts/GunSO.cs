@@ -10,6 +10,7 @@ public class GunSO : ScriptableObject
     public GameObject bulletPrefab;
     public float fireRate;
     public float bulletSpeed;
+    public float bulletAngleShift;
 
     [Header("Reload")]
     public int magazine;
