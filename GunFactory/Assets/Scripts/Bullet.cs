@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public LayerMask hittableLayers;
+    public LayerMask wallLayers;
+    public LayerMask dummyLayers;
+    public int bulletDamage;
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,8 +16,13 @@ public class Bullet : MonoBehaviour
         //    print("hit" + collision.gameObject.layer);
         //    DestroyItself();
         //}
-        if ((hittableLayers & (1 << collision.transform.gameObject.layer)) > 0)
+        if ((wallLayers & (1 << collision.transform.gameObject.layer)) > 0)
         {
+            DestroyItself();
+        }
+        if ((dummyLayers & (1 << collision.transform.gameObject.layer)) > 0)
+        {
+            collision.GetComponent<DummyHP>().TakeDamage(bulletDamage);
             DestroyItself();
         }
     }

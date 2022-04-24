@@ -144,6 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0752139b8702fd469e573be16649f62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hittableLayers:
+  wallLayers:
     serializedVersion: 2
     m_Bits: 64
+  dummyLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  bulletDamage: 1
