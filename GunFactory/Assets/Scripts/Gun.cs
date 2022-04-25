@@ -15,6 +15,10 @@ public class Gun : MonoBehaviour
     bool canShoot;
     float fireRateTimer;
 
+    public ParticleSystem bulletShellEffect;
+
+    //specific to fire mods
+    bool barrelEmpty;
 
     void Start()
     {
@@ -38,11 +42,47 @@ public class Gun : MonoBehaviour
 
     void CheckInput()
     {
-        if (Input.GetButton("Fire1") && canShoot && currentAmmoCount>0)
+        switch (gunStats.fireMode)
         {
-            Fire();
+            case GunSO.shootType.fullAuto:
+                if (Input.GetButton("Fire1") && canShoot && currentAmmoCount > 0)
+                {
+                    Fire();
+                    bulletShellEffect.Play();
+                }
+                break;
+
+            case GunSO.shootType.semiAuto:
+                if (Input.GetButtonDown("Fire1") && canShoot && currentAmmoCount > 0)
+                {
+                    Fire();
+                    bulletShellEffect.Play();
+                }
+                break;
+
+            case GunSO.shootType.pump:
+                if (Input.GetButtonDown("Fire1") && canShoot && currentAmmoCount > 0)
+                {
+                    Fire();
+                }
+                break;
+
+            case GunSO.shootType.charge:
+                if (Input.GetButton("Fire1") && canShoot && currentAmmoCount > 0)
+                {
+                    Fire();
+                    bulletShellEffect.Play();
+                }
+                break;
+
+
         }
     }
+    //    if (Input.GetButton("Fire1") && canShoot && currentAmmoCount>0)
+    //    {
+    //        Fire();
+    //    }
+    //}
 
     void Fire()
     {
@@ -105,10 +145,12 @@ public class Gun : MonoBehaviour
         if(transform.eulerAngles.z >= 90 && transform.eulerAngles.z <= 260)
         {
             gunSprite.flipY = true;
+            bulletShellEffect.gameObject.transform.localEulerAngles = new Vector3(90, bulletShellEffect.gameObject.transform.eulerAngles.y, bulletShellEffect.gameObject.transform.eulerAngles.z);
         }
         else
         {
             gunSprite.flipY = false;
+            bulletShellEffect.gameObject.transform.localEulerAngles = new Vector3(-90, bulletShellEffect.gameObject.transform.eulerAngles.y, bulletShellEffect.gameObject.transform.eulerAngles.z);
         }
     }
 

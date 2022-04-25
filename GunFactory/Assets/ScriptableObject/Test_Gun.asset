@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bccc5d5bbc863a44b3ed2ba95551f5a, type: 3}
   m_Name: Test_Gun
   m_EditorClassIdentifier: 
+  fireMode: 0
   bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
   fireRate: 0.15
   bulletSpeed: 30
