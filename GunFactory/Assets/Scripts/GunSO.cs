@@ -10,9 +10,17 @@ public class GunSO : ScriptableObject
     [Header("Shoot")]
     public shootType fireMode;
     public GameObject bulletPrefab;
+    public int bulletDamage;
     public float fireRate;
     public float bulletSpeed;
     public float bulletAngleShift;
+
+    [Header("Knockback")]
+    public float knockbackOnPlayer;
+
+    [Header("Bullet Penetration")]
+    public int maxTargetsPenetration;
+    public float penetrationMultiplier;
 
     [Header("Reload")]
     public int magazine;

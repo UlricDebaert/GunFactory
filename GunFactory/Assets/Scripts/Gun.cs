@@ -90,14 +90,24 @@ public class Gun : MonoBehaviour
         {
             GameObject bullet = Instantiate(gunStats.bulletPrefab, firePoints[i].position, gameObject.transform.rotation * Quaternion.Euler(0.0f, 0.0f, Random.Range(-gunStats.bulletAngleShift, gunStats.bulletAngleShift)));
             bullet.GetComponent<Rigidbody2D>().AddForce(gunStats.bulletSpeed * bullet.transform.right.normalized, ForceMode2D.Impulse);
+            bullet.GetComponent<Bullet>().bulletDamage = gunStats.bulletDamage;
+            bullet.GetComponent<Bullet>().maxTargetsPenetration = gunStats.maxTargetsPenetration;
+            bullet.GetComponent<Bullet>().penetrationMultiplier = gunStats.penetrationMultiplier;
         }
+
         canShoot = false;
         fireRateTimer = gunStats.fireRate;
         currentAmmoCount--;
+
         if (currentAmmoCount <= 0)
         {
             reloadTimer = gunStats.reloadTime;
         }
+                
+        gameObject.GetComponentInParent<Rigidbody2D>().AddForce(
+            new Vector2(Mathf.Sign(-(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x)), 0) * gunStats.knockbackOnPlayer, 
+            ForceMode2D.Impulse);
+
         UpdateAmmoCount();
     }
 
