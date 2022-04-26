@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
 
             if (!Input.GetButton("Horizontal"))
             {
-                rb.velocity = new Vector2(0, rb.velocity.y);
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
 
                 ChangeAnimationState(playerIdle);
             }
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
             if (!Input.GetButton("Horizontal"))
             {
-                rb.velocity = new Vector2(rb.velocity.x*airDragMultiplier, rb.velocity.y);
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
             }
 
             ChangeAnimationState(playerJump);

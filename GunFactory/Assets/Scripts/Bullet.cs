@@ -6,8 +6,18 @@ public class Bullet : MonoBehaviour
 {
     public LayerMask wallLayers;
     public LayerMask dummyLayers;
-    public int bulletDamage;
 
+    [HideInInspector] public int bulletDamage;
+    [HideInInspector] public int maxTargetsPenetration;
+    [HideInInspector] int targetPenetrated;
+    [HideInInspector] public float penetrationMultiplier;
+
+    public float destroyAnimDelay;
+
+    private void Start()
+    {
+        targetPenetrated = 0;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,13 +32,15 @@ public class Bullet : MonoBehaviour
         }
         if ((dummyLayers & (1 << collision.transform.gameObject.layer)) > 0)
         {
-            collision.GetComponent<DummyHP>().TakeDamage(bulletDamage);
-            DestroyItself();
+            collision.GetComponent<DummyHP>().TakeDamage(Mathf.RoundToInt(bulletDamage/(1+targetPenetrated*penetrationMultiplier)));
+
+            if (targetPenetrated >= maxTargetsPenetration) DestroyItself();
+            else targetPenetrated++;
         }
     }
 
     public void DestroyItself()
     {
-        Destroy(gameObject);
+        Destroy(gameObject, destroyAnimDelay);
     }
 }

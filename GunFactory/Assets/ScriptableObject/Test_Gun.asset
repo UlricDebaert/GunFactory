@@ -14,9 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireMode: 0
   bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
+  bulletDamage: 20
   fireRate: 0.15
   bulletSpeed: 30
   bulletAngleShift: 10
+  knockbackOnPlayer: 7
+  maxTargetsPenetration: 2
+  penetrationMultiplier: 0.5
   magazine: 30
   reloadTime: 1
   shootAudio: {fileID: 0}
