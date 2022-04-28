@@ -15,7 +15,7 @@ MonoBehaviour:
   fireMode: 0
   bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
   bulletDamage: 20
-  fireRate: 0.15
+  fireRate: 0.1
   bulletSpeed: 30
   bulletAngleShift: 10
   knockbackOnPlayer: 7
@@ -23,7 +23,9 @@ MonoBehaviour:
   penetrationMultiplier: 0.5
   magazine: 30
   reloadTime: 1
-  shootAudio: {fileID: 8300000, guid: b40aabaa7a95c8f469d80f6666b4874a, type: 3}
+  shootAudio: {fileID: 8300000, guid: 75a7404ec36a7ed4c939164a769d28e0, type: 3}
+  pitchBase: 1.3
+  pitchVariation: 0
   baseSprite: {fileID: 0}
   emptyMagazineSprite: {fileID: 0}
   reloadAnimation: {fileID: 0}
