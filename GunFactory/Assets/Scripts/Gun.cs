@@ -8,6 +8,7 @@ public class Gun : MonoBehaviour
     public Transform[] firePoints;
 
     SpriteRenderer gunSprite;
+    AudioSource audioSource;
 
     int currentAmmoCount;
     float reloadTimer;
@@ -23,6 +24,8 @@ public class Gun : MonoBehaviour
     void Start()
     {
         gunSprite = GetComponent<SpriteRenderer>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.clip = gunStats.shootAudio;
         canShoot = false;
         currentAmmoCount = gunStats.magazine;
         UpdateAmmoCount();
@@ -88,7 +91,7 @@ public class Gun : MonoBehaviour
     {
         for (int i = 0; i < firePoints.Length; i++)
         {
-            GameObject bullet = Instantiate(gunStats.bulletPrefab, firePoints[i].position, gameObject.transform.rotation * Quaternion.Euler(0.0f, 0.0f, Random.Range(-gunStats.bulletAngleShift, gunStats.bulletAngleShift)));
+            GameObject bullet = Instantiate(gunStats.bulletPrefab, firePoints[i].position, firePoints[i].transform.rotation * Quaternion.Euler(0.0f, 0.0f, Random.Range(-gunStats.bulletAngleShift, gunStats.bulletAngleShift)));
             bullet.GetComponent<Rigidbody2D>().AddForce(gunStats.bulletSpeed * bullet.transform.right.normalized, ForceMode2D.Impulse);
             bullet.GetComponent<Bullet>().bulletDamage = gunStats.bulletDamage;
             bullet.GetComponent<Bullet>().maxTargetsPenetration = gunStats.maxTargetsPenetration;
@@ -107,6 +110,12 @@ public class Gun : MonoBehaviour
         gameObject.GetComponentInParent<Rigidbody2D>().AddForce(
             new Vector2(Mathf.Sign(-(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x)), 0) * gunStats.knockbackOnPlayer, 
             ForceMode2D.Impulse);
+
+        if (gunStats.shootAudio != null)
+        {
+            audioSource.Play();
+            audioSource.pitch=gunStats.pitchBase+Random.Range(-gunStats.pitchVariation, gunStats.pitchVariation);
+        }
 
         UpdateAmmoCount();
     }

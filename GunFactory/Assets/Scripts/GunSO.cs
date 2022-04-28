@@ -28,6 +28,8 @@ public class GunSO : ScriptableObject
 
     [Header("Audio")]
     public AudioClip shootAudio;
+    public float pitchBase;
+    public float pitchVariation;
 
     [Header("Sprite")]
     public Sprite baseSprite;

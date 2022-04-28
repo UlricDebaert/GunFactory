@@ -23,7 +23,7 @@ MonoBehaviour:
   penetrationMultiplier: 0.5
   magazine: 30
   reloadTime: 1
-  shootAudio: {fileID: 0}
+  shootAudio: {fileID: 8300000, guid: b40aabaa7a95c8f469d80f6666b4874a, type: 3}
   baseSprite: {fileID: 0}
   emptyMagazineSprite: {fileID: 0}
   reloadAnimation: {fileID: 0}
