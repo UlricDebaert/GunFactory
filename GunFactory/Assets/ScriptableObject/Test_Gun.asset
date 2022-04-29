@@ -29,3 +29,4 @@ MonoBehaviour:
   baseSprite: {fileID: 0}
   emptyMagazineSprite: {fileID: 0}
   reloadAnimation: {fileID: 0}
+  glockAnimation: {fileID: 0}

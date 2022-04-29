@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
 
     SpriteRenderer gunSprite;
     AudioSource audioSource;
+    Animation anim;
 
     int currentAmmoCount;
     float reloadTimer;
@@ -25,6 +26,7 @@ public class Gun : MonoBehaviour
     {
         gunSprite = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animation>();
         canShoot = false;
         barrelEmpty = false;
         currentAmmoCount = gunStats.magazine;
@@ -68,6 +70,7 @@ public class Gun : MonoBehaviour
                 {
                     //barrelEmpty = false;
                     Invoke("EmptyBarrel", 0.1f);
+
                     bulletShellEffect.Play();
                 }
                 if (Input.GetButtonDown("Fire1") && canShoot && currentAmmoCount > 0 && !barrelEmpty)

@@ -4085,6 +4085,7 @@ GameObject:
   - component: {fileID: 200009938}
   - component: {fileID: 200009939}
   - component: {fileID: 200009940}
+  - component: {fileID: 200009941}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -4271,6 +4272,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!111 &200009941
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200009936}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &302412875
 GameObject:
   m_ObjectHideFlags: 0

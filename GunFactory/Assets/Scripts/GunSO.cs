@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Custom Inspector
+using UnityEditor;
+
 
 [CreateAssetMenu]
 public class GunSO : ScriptableObject
@@ -36,4 +39,22 @@ public class GunSO : ScriptableObject
     public Sprite baseSprite;
     public Sprite emptyMagazineSprite;
     public Animation reloadAnimation;
+    [HideInInspector] public Animation cockingAnimation;
+}
+
+
+[CustomEditor(typeof(GunSO))]
+public class GunSO_Editor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector(); // for other non-HideInInspector fields
+
+        GunSO script = (GunSO)target;
+
+        if(script.fireMode == GunSO.shootType.pump)
+        {
+            script.cockingAnimation = EditorGUILayout.ObjectField("Glock Animation", script.cockingAnimation, typeof(Animation), true) as Animation;
+        }
+    }
 }
