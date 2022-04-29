@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu]
 public class GunSO : ScriptableObject
 {
-    public enum shootType { fullAuto, semiAuto, pump, charge }
+    public enum shootType { fullAuto, semiAuto, pump }
     [Header("Shoot")]
     public shootType fireMode;
     public GameObject bulletPrefab;

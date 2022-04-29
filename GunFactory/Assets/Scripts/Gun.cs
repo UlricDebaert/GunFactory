@@ -25,8 +25,8 @@ public class Gun : MonoBehaviour
     {
         gunSprite = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
-        audioSource.clip = gunStats.shootAudio;
         canShoot = false;
+        barrelEmpty = false;
         currentAmmoCount = gunStats.magazine;
         UpdateAmmoCount();
         if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null)
@@ -64,20 +64,19 @@ public class Gun : MonoBehaviour
                 break;
 
             case GunSO.shootType.pump:
-                if (Input.GetButtonDown("Fire1") && canShoot && currentAmmoCount > 0)
+                if (Input.GetButtonDown("Fire1") && barrelEmpty)
                 {
-                    Fire();
-                }
-                break;
-
-            case GunSO.shootType.charge:
-                if (Input.GetButton("Fire1") && canShoot && currentAmmoCount > 0)
-                {
-                    Fire();
+                    //barrelEmpty = false;
+                    Invoke("EmptyBarrel", 0.1f);
                     bulletShellEffect.Play();
                 }
+                if (Input.GetButtonDown("Fire1") && canShoot && currentAmmoCount > 0 && !barrelEmpty)
+                {
+                    Fire();
+                    //barrelEmpty = true;
+                    Invoke("EmptyBarrel", 0.1f);
+                }
                 break;
-
 
         }
     }
@@ -114,6 +113,7 @@ public class Gun : MonoBehaviour
 
         if (gunStats.shootAudio != null)
         {
+            audioSource.clip = gunStats.shootAudio;
             audioSource.Play();
             audioSource.pitch=gunStats.pitchBase+Random.Range(-gunStats.pitchVariation, gunStats.pitchVariation);
         }
@@ -180,5 +180,10 @@ public class Gun : MonoBehaviour
         {
             AmmoCountPannel.instance.ammoCounterText.text = currentAmmoCount.ToString() + " / " + gunStats.magazine.ToString();
         }
+    }
+
+    void EmptyBarrel()
+    {
+        barrelEmpty = !barrelEmpty;
     }
 }

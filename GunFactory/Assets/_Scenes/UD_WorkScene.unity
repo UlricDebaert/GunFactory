@@ -15101,7 +15101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entitySpawnedPrefab: {fileID: 7641447757271737082, guid: ad6196fc513637047bca9089719507ce, type: 3}
-  totalEntitySpawned: 5
+  totalEntitySpawned: 0
   spawnDelay: 1
 --- !u!4 &1219710342
 Transform:
