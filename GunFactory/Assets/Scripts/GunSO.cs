@@ -17,6 +17,7 @@ public class GunSO : ScriptableObject
 
     [Header("Knockback")]
     public float knockbackOnPlayer;
+    //public float knockbackOnTarget;
 
     [Header("Bullet Penetration")]
     public int maxTargetsPenetration;

@@ -96,6 +96,7 @@ public class Gun : MonoBehaviour
             bullet.GetComponent<Bullet>().bulletDamage = gunStats.bulletDamage;
             bullet.GetComponent<Bullet>().maxTargetsPenetration = gunStats.maxTargetsPenetration;
             bullet.GetComponent<Bullet>().penetrationMultiplier = gunStats.penetrationMultiplier;
+            //bullet.GetComponent<Bullet>().knockbackOnTarget = gunStats.knockbackOnTarget;
         }
 
         canShoot = false;

@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public int maxTargetsPenetration;
     [HideInInspector] int targetPenetrated;
     [HideInInspector] public float penetrationMultiplier;
+    //[HideInInspector] public float knockbackOnTarget;
 
     public float destroyAnimDelay;
 
@@ -33,6 +34,8 @@ public class Bullet : MonoBehaviour
         if ((dummyLayers & (1 << collision.transform.gameObject.layer)) > 0)
         {
             collision.GetComponent<DummyHP>().TakeDamage(Mathf.RoundToInt(bulletDamage/(1+targetPenetrated*penetrationMultiplier)));
+
+            //collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(collision.transform.position.x-gameObject.transform.position.x,0)*knockbackOnTarget, ForceMode2D.Impulse);
 
             if (targetPenetrated >= maxTargetsPenetration) DestroyItself();
             else targetPenetrated++;
