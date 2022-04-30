@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour
 
     SpriteRenderer gunSprite;
     AudioSource audioSource;
-    Animation anim;
+    Animator anim;
 
     int currentAmmoCount;
     float reloadTimer;
@@ -26,7 +26,7 @@ public class Gun : MonoBehaviour
     {
         gunSprite = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
-        anim = GetComponent<Animation>();
+        anim = GetComponent<Animator>();
         canShoot = false;
         barrelEmpty = false;
         currentAmmoCount = gunStats.magazine;
@@ -68,15 +68,15 @@ public class Gun : MonoBehaviour
             case GunSO.shootType.pump:
                 if (Input.GetButtonDown("Fire1") && barrelEmpty)
                 {
-                    //barrelEmpty = false;
                     Invoke("EmptyBarrel", 0.1f);
+
+                    anim.Play(gunStats.cockingAnimation.name.ToString());
 
                     bulletShellEffect.Play();
                 }
                 if (Input.GetButtonDown("Fire1") && canShoot && currentAmmoCount > 0 && !barrelEmpty)
                 {
                     Fire();
-                    //barrelEmpty = true;
                     Invoke("EmptyBarrel", 0.1f);
                 }
                 break;
@@ -120,6 +120,7 @@ public class Gun : MonoBehaviour
             audioSource.Play();
             audioSource.pitch=gunStats.pitchBase+Random.Range(-gunStats.pitchVariation, gunStats.pitchVariation);
         }
+
 
         UpdateAmmoCount();
     }

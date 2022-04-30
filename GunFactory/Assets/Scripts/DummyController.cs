@@ -51,12 +51,10 @@ public class DummyController : MonoBehaviour
         //Debug.DrawRay(transform.position, transform.right, Color.green, wallDetectionDistance);
         if (Physics2D.Raycast(transform.position, transform.right, wallDetectionDistance, wallLayer))
         {
-            print("wall right");
             horizontalOrientation = -1.0f;
         }
         if (Physics2D.Raycast(transform.position, -transform.right, wallDetectionDistance, wallLayer))
         {
-            print("wall right");
             horizontalOrientation = 1.0f;
         }
 

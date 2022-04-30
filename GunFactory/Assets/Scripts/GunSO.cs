@@ -38,8 +38,8 @@ public class GunSO : ScriptableObject
     [Header("Sprite")]
     public Sprite baseSprite;
     public Sprite emptyMagazineSprite;
-    public Animation reloadAnimation;
-    [HideInInspector] public Animation cockingAnimation;
+    public AnimationClip reloadAnimation;
+    [HideInInspector] public AnimationClip cockingAnimation;
 }
 
 
@@ -54,7 +54,7 @@ public class GunSO_Editor : Editor
 
         if(script.fireMode == GunSO.shootType.pump)
         {
-            script.cockingAnimation = EditorGUILayout.ObjectField("Glock Animation", script.cockingAnimation, typeof(Animation), true) as Animation;
+            script.cockingAnimation = EditorGUILayout.ObjectField("Cocking Animation", script.cockingAnimation, typeof(AnimationClip), true) as AnimationClip;
         }
     }
 }
