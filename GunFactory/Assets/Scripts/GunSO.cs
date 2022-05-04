@@ -36,9 +36,9 @@ public class GunSO : ScriptableObject
     public float pitchVariation;
 
     [Header("Sprite")]
-    public Sprite baseSprite;
-    public Sprite emptyMagazineSprite;
-    public AnimationClip reloadAnimation;
+    public AnimationClip idleAnimation;
+    public AnimationClip shootAnimation;
+    public AnimationClip emptyMagazineAnimation;
     [HideInInspector] public AnimationClip cockingAnimation;
 }
 

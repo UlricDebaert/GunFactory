@@ -27,17 +27,29 @@ public class DummyController : MonoBehaviour
     const string dummyWalk = "DummyWalk_Anim";
 
     float horizontalOrientation;
+    DummyHP dummyHP;
+    BoxCollider2D ownCollider;
 
     void Start()
     {
+        dummyHP = GetComponent<DummyHP>();
+        ownCollider = GetComponent<BoxCollider2D>();
         horizontalOrientation = 1.0f;
     }
 
 
     void Update()
     {
-        UpdateGraphicLookingDir();
-        Move();
+        if (!dummyHP.isDead)
+        {
+            UpdateGraphicLookingDir();
+            Move();
+        }
+
+        if (dummyHP.isDead)
+        {
+            DeadState();
+        }
     }
 
     private void FixedUpdate()
@@ -82,6 +94,16 @@ public class DummyController : MonoBehaviour
         else
         {
             dummySprite.flipX = true;
+        }
+    }
+
+    void DeadState()
+    {
+        ownCollider.enabled = false;
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        if (isGrounded)
+        {
+            rb.isKinematic = true;
         }
     }
 

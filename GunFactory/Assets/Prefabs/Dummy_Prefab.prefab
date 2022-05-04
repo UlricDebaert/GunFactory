@@ -441,7 +441,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalHP: 100
   currentHP: 0
-  healthBarUI: {fileID: 7641447756847071048}
+  isDead: 0
+  healthBarUIParent: {fileID: 7641447756786262967}
+  healthBarUIFill: {fileID: 7641447756847071048}
   healthBarColor:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0.16874456, a: 1}
@@ -471,6 +473,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
+  anim: {fileID: 7641447757319560652}
 --- !u!1 &7641447757319560657
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +546,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 9
-  m_Sprite: {fileID: -4514463380985102225, guid: 4479f50fd1953ac4cb4f84dd30f3a964, type: 3}
+  m_Sprite: {fileID: -6582551849556756579, guid: 77aff923769fb564182545a3476ea982, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -564,7 +567,7 @@ Animator:
   m_GameObject: {fileID: 7641447757319560657}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c3b12c93bef578f489ce96c47300eafb, type: 2}
+  m_Controller: {fileID: 9100000, guid: bf42331f088724741aadc16c52172159, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

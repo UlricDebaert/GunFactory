@@ -27,8 +27,12 @@ public class Gun : MonoBehaviour
         gunSprite = GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
+
+        anim.Play(gunStats.idleAnimation.name.ToString());
+
         canShoot = false;
         barrelEmpty = false;
+
         currentAmmoCount = gunStats.magazine;
         UpdateAmmoCount();
         if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null)
@@ -70,7 +74,8 @@ public class Gun : MonoBehaviour
                 {
                     Invoke("EmptyBarrel", 0.1f);
 
-                    anim.Play(gunStats.cockingAnimation.name.ToString());
+                    if(gunStats.cockingAnimation != null)
+                        anim.Play(gunStats.cockingAnimation.name.ToString());
 
                     bulletShellEffect.Play();
                 }
@@ -139,6 +144,8 @@ public class Gun : MonoBehaviour
     {
         if (reloadTimer > 0.0f)
         {
+            anim.SetBool("emptyMag", true);
+
             reloadTimer -= Time.deltaTime;
 
             if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null && reloadTimer > 0.0f) 
@@ -150,6 +157,8 @@ public class Gun : MonoBehaviour
 
                 if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null) 
                     AmmoCountPannel.instance.ammoLoadingIcon.fillAmount = 0.0f;
+
+                anim.SetBool("emptyMag", false);
 
                 UpdateAmmoCount();
             }

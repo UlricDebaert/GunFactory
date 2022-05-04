@@ -12,12 +12,31 @@ public class Bullet : MonoBehaviour
     [HideInInspector] int targetPenetrated;
     [HideInInspector] public float penetrationMultiplier;
     //[HideInInspector] public float knockbackOnTarget;
+    [HideInInspector] public bool destroyed;
+
+    Rigidbody2D rb;
+    Animator anim;
 
     public float destroyAnimDelay;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+
+        destroyed = false;
+        anim.SetBool("destroyed", destroyed);
+
         targetPenetrated = 0;
+    }
+
+    private void Update()
+    {
+        if (destroyed)
+        {
+            rb.isKinematic = true;
+            rb.velocity = new Vector2(0, 0); 
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -44,6 +63,8 @@ public class Bullet : MonoBehaviour
 
     public void DestroyItself()
     {
+        destroyed = true;
+        anim.SetBool("destroyed", destroyed);
         Destroy(gameObject, destroyAnimDelay);
     }
 }
