@@ -19,7 +19,7 @@ public class Gun : MonoBehaviour
 
     public ParticleSystem bulletShellEffect;
 
-    //specific to fire mods
+    //specific to fire mode
     bool barrelEmpty;
 
     void Start()
@@ -96,6 +96,9 @@ public class Gun : MonoBehaviour
 
     void Fire()
     {
+        if (gunStats.shootAnimation != null)
+            anim.Play(gunStats.shootAnimation.name.ToString());
+
         for (int i = 0; i < firePoints.Length; i++)
         {
             GameObject bullet = Instantiate(gunStats.bulletPrefab, firePoints[i].position, firePoints[i].transform.rotation * Quaternion.Euler(0.0f, 0.0f, Random.Range(-gunStats.bulletAngleShift, gunStats.bulletAngleShift)));
@@ -104,6 +107,14 @@ public class Gun : MonoBehaviour
             bullet.GetComponent<Bullet>().maxTargetsPenetration = gunStats.maxTargetsPenetration;
             bullet.GetComponent<Bullet>().penetrationMultiplier = gunStats.penetrationMultiplier;
             //bullet.GetComponent<Bullet>().knockbackOnTarget = gunStats.knockbackOnTarget;
+        }
+
+
+        if (gunStats.muzzleflashPrefabs.Length != 0)
+        {
+            int rand = Random.Range(0, gunStats.muzzleflashPrefabs.Length - 1);
+            GameObject flash = Instantiate(gunStats.muzzleflashPrefabs[rand], firePoints[0].position, firePoints[0].transform.rotation, gameObject.transform);
+            Destroy(flash, gunStats.muzzleflashLifeTime);
         }
 
         canShoot = false;

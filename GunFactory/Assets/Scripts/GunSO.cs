@@ -22,6 +22,10 @@ public class GunSO : ScriptableObject
     public float knockbackOnPlayer;
     //public float knockbackOnTarget;
 
+    [Header("Muzzleflash")]
+    public GameObject[] muzzleflashPrefabs;
+    public float muzzleflashLifeTime;
+
     [Header("Bullet Penetration")]
     public int maxTargetsPenetration;
     public float penetrationMultiplier;

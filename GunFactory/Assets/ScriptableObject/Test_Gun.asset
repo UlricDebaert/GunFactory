@@ -19,6 +19,9 @@ MonoBehaviour:
   bulletSpeed: 30
   bulletAngleShift: 10
   knockbackOnPlayer: 7
+  muzzleflashPrefabs:
+  - {fileID: 5353373965403994199, guid: ddfdf35d7436fd5489add9a538ebd496, type: 3}
+  muzzleflashLifeTime: 0.05
   maxTargetsPenetration: 2
   penetrationMultiplier: 0.5
   magazine: 30
