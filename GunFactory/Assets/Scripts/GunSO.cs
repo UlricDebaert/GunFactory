@@ -11,39 +11,39 @@ public class GunSO : ScriptableObject
 {
     public enum shootType { fullAuto, semiAuto, pump }
     [Header("Shoot")]
-    public shootType fireMode;
-    public GameObject bulletPrefab;
-    public int bulletDamage;
-    public float fireRate;
-    public float bulletSpeed;
-    public float bulletAngleShift;
+    [Tooltip("Trigger type")] public shootType fireMode;
+    [Tooltip("Bullet instantiate for each shot")] public GameObject bulletPrefab;
+    [Tooltip("Bullet damage on target")] public int bulletDamage;
+    [Tooltip("Time between each shot")] public float fireRate;
+    [Tooltip("Force apply on bullet on shot")] public float bulletSpeed;
+    [Tooltip("Reduce gun accuracy")]public float bulletAngleShift;
 
     [Header("Knockback")]
-    public float knockbackOnPlayer;
+    [Tooltip("Knockback apply on player for each shot")] public float knockbackOnPlayer;
     //public float knockbackOnTarget;
 
     [Header("Muzzleflash")]
-    public GameObject[] muzzleflashPrefabs;
-    public float muzzleflashLifeTime;
+    [Tooltip("Randomized flash instantiate for each shot")] public GameObject[] muzzleflashPrefabs;
+    [Tooltip("Time before flash destruction")] public float muzzleflashLifeTime;
 
     [Header("Bullet Penetration")]
-    public int maxTargetsPenetration;
-    public float penetrationMultiplier;
+    [Tooltip("Penetrated targets before destruction of bullet")] public int maxTargetsPenetration;
+    [Tooltip("Damage multiplier for each target penetrated, multiply with number of targets penetrated")] public float penetrationMultiplier;
 
     [Header("Reload")]
-    public int magazine;
-    public float reloadTime;
+    [Tooltip("Magazine size")] public int magazine;
+    [Tooltip("Time to reload weapon")] public float reloadTime;
 
     [Header("Audio")]
-    public AudioClip shootAudio;
-    public float pitchBase;
-    public float pitchVariation;
+    [Tooltip("Audio play for each shot")] public AudioClip shootAudio;
+    [Tooltip("Base audio pitch")] public float pitchBase = 1;
+    [Tooltip("Pitch variation for each shot")] public float pitchVariation = 0;
 
     [Header("Sprite")]
-    public AnimationClip idleAnimation;
-    public AnimationClip shootAnimation;
-    public AnimationClip emptyMagazineAnimation;
-    [HideInInspector] public AnimationClip cockingAnimation;
+    [Tooltip("Base animation")] public AnimationClip idleAnimation;
+    [Tooltip("Animation play for each shot")] public AnimationClip shootAnimation;
+    [Tooltip("Animation when magazine is empty")] public AnimationClip emptyMagazineAnimation;
+    [HideInInspector] [Tooltip("Load bullet animation, specific to pump weapon")] public AnimationClip cockingAnimation;
 }
 
 

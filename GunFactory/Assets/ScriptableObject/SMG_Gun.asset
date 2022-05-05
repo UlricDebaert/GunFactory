@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bccc5d5bbc863a44b3ed2ba95551f5a, type: 3}
-  m_Name: Test_Gun
+  m_Name: SMG_Gun
   m_EditorClassIdentifier: 
   fireMode: 0
   bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
@@ -18,11 +18,15 @@ MonoBehaviour:
   fireRate: 0.1
   bulletSpeed: 30
   bulletAngleShift: 10
-  knockbackOnPlayer: 7
+  knockbackOnPlayer: 3
   muzzleflashPrefabs:
   - {fileID: 5353373965403994199, guid: ddfdf35d7436fd5489add9a538ebd496, type: 3}
+  - {fileID: 6498316776073974490, guid: 1bf752da77c8ab649875ea0922342bd9, type: 3}
+  - {fileID: 5694424060417533942, guid: 4233c32a74a5a3c408b80fe8d8d6d978, type: 3}
+  - {fileID: 4751557626888455584, guid: b90346d2ab701934b83a139156d30f9d, type: 3}
+  - {fileID: 5279753375403769664, guid: 4502c2717780c3841bcbde49e7cce876, type: 3}
   muzzleflashLifeTime: 0.05
-  maxTargetsPenetration: 2
+  maxTargetsPenetration: 0
   penetrationMultiplier: 0.5
   magazine: 30
   reloadTime: 1

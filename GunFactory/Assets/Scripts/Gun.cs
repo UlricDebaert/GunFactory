@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Gun : MonoBehaviour
 {
-    public GunSO gunStats;
-    public Transform[] firePoints;
+    [Tooltip("Gun stats reference")] public GunSO gunStats;
+    [Tooltip("Gun fire points, each shoot one bullet")] public Transform[] firePoints;
 
     SpriteRenderer gunSprite;
     AudioSource audioSource;
@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
     bool canShoot;
     float fireRateTimer;
 
-    public ParticleSystem bulletShellEffect;
+    [Tooltip("Particle system for bullet shell ejection")] public ParticleSystem bulletShellEffect;
 
     //specific to fire mode
     bool barrelEmpty;
