@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bccc5d5bbc863a44b3ed2ba95551f5a, type: 3}
-  m_Name: AK47_Gun
+  m_Name: Shotgun_Gun
   m_EditorClassIdentifier: 
-  fireMode: 0
+  fireMode: 2
   bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
-  bulletDamage: 30
-  fireRate: 0.2
-  bulletSpeed: 25
-  bulletAngleShift: 5
-  bulletQuantityPerShootPoint: 1
-  knockbackOnPlayer: 5
+  bulletDamage: 10
+  fireRate: 0.5
+  bulletSpeed: 30
+  bulletAngleShift: 17.5
+  bulletQuantityPerShootPoint: 5
+  knockbackOnPlayer: 12
   muzzleflashPrefabs:
   - {fileID: 5353373965403994199, guid: ddfdf35d7436fd5489add9a538ebd496, type: 3}
   - {fileID: 6498316776073974490, guid: 1bf752da77c8ab649875ea0922342bd9, type: 3}
@@ -27,14 +27,14 @@ MonoBehaviour:
   - {fileID: 4751557626888455584, guid: b90346d2ab701934b83a139156d30f9d, type: 3}
   - {fileID: 5279753375403769664, guid: 4502c2717780c3841bcbde49e7cce876, type: 3}
   muzzleflashLifeTime: 0.05
-  maxTargetsPenetration: 2
-  penetrationMultiplier: 0.5
-  magazine: 20
-  reloadTime: 1.25
-  shootAudio: {fileID: 8300000, guid: c16978f8408d67a43bc4ddba9713fefc, type: 3}
+  maxTargetsPenetration: 1
+  penetrationMultiplier: 0.25
+  magazine: 6
+  reloadTime: 1.5
+  shootAudio: {fileID: 8300000, guid: 53a00e1684beaf04aada5c65d430f36d, type: 3}
   pitchBase: 1
   pitchVariation: 0
-  idleAnimation: {fileID: 7400000, guid: e79e28674e3eb82418ebead6bc1c5b22, type: 2}
-  shootAnimation: {fileID: 7400000, guid: 9586b32c4732ef34d9d072b4d0310e29, type: 2}
-  emptyMagazineAnimation: {fileID: 7400000, guid: 233010361c2b0ff42ba5ebd698765427, type: 2}
-  cockingAnimation: {fileID: 0}
+  idleAnimation: {fileID: 7400000, guid: 6891f75a87afb4d468e732ab7144bfb8, type: 2}
+  shootAnimation: {fileID: 7400000, guid: 8e69149b0b3c5274bb278d9dc52bc4b1, type: 2}
+  emptyMagazineAnimation: {fileID: 7400000, guid: b6ea3480616cda44185ee7e65f3b8a18, type: 2}
+  cockingAnimation: {fileID: 7400000, guid: dc3b50acb719c024da07ec34f7263c22, type: 2}

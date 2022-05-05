@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bccc5d5bbc863a44b3ed2ba95551f5a, type: 3}
-  m_Name: AK47_Gun
+  m_Name: AA12_Gun
   m_EditorClassIdentifier: 
   fireMode: 0
   bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
-  bulletDamage: 30
-  fireRate: 0.2
+  bulletDamage: 5
+  fireRate: 0.25
   bulletSpeed: 25
-  bulletAngleShift: 5
-  bulletQuantityPerShootPoint: 1
-  knockbackOnPlayer: 5
+  bulletAngleShift: 25
+  bulletQuantityPerShootPoint: 4
+  knockbackOnPlayer: 7.5
   muzzleflashPrefabs:
   - {fileID: 5353373965403994199, guid: ddfdf35d7436fd5489add9a538ebd496, type: 3}
   - {fileID: 6498316776073974490, guid: 1bf752da77c8ab649875ea0922342bd9, type: 3}
@@ -27,14 +27,14 @@ MonoBehaviour:
   - {fileID: 4751557626888455584, guid: b90346d2ab701934b83a139156d30f9d, type: 3}
   - {fileID: 5279753375403769664, guid: 4502c2717780c3841bcbde49e7cce876, type: 3}
   muzzleflashLifeTime: 0.05
-  maxTargetsPenetration: 2
-  penetrationMultiplier: 0.5
-  magazine: 20
-  reloadTime: 1.25
-  shootAudio: {fileID: 8300000, guid: c16978f8408d67a43bc4ddba9713fefc, type: 3}
+  maxTargetsPenetration: 0
+  penetrationMultiplier: 0
+  magazine: 10
+  reloadTime: 1
+  shootAudio: {fileID: 8300000, guid: 35c1dc60e617f194a907676924677b82, type: 3}
   pitchBase: 1
   pitchVariation: 0
-  idleAnimation: {fileID: 7400000, guid: e79e28674e3eb82418ebead6bc1c5b22, type: 2}
-  shootAnimation: {fileID: 7400000, guid: 9586b32c4732ef34d9d072b4d0310e29, type: 2}
-  emptyMagazineAnimation: {fileID: 7400000, guid: 233010361c2b0ff42ba5ebd698765427, type: 2}
+  idleAnimation: {fileID: 7400000, guid: 44570bb516ac3da41afd263f21cf4f25, type: 2}
+  shootAnimation: {fileID: 7400000, guid: 3add3fc5e63b23a4ba8c269ed5a7324a, type: 2}
+  emptyMagazineAnimation: {fileID: 7400000, guid: 402d36d02fa46734e8c3b8aeca229e02, type: 2}
   cockingAnimation: {fileID: 0}

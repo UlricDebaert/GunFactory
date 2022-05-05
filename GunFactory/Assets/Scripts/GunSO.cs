@@ -17,6 +17,7 @@ public class GunSO : ScriptableObject
     [Tooltip("Time between each shot")] public float fireRate;
     [Tooltip("Force apply on bullet on shot")] public float bulletSpeed;
     [Tooltip("Reduce gun accuracy")]public float bulletAngleShift;
+    [Tooltip("Bullet quantity instantiate per shoot point for each shot")]public float bulletQuantityPerShootPoint = 1;
 
     [Header("Knockback")]
     [Tooltip("Knockback apply on player for each shot")] public float knockbackOnPlayer;

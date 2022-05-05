@@ -4149,7 +4149,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: ed1dc9b3b9bd45b4287e08043329c839, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 983297f0c1e0b25488c0f2e884f06994, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4172,7 +4172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d800722482775459950aeae2af1adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunStats: {fileID: 11400000, guid: a0ae3817e46ae6848a6d2b5df58251f6, type: 2}
+  gunStats: {fileID: 11400000, guid: 43be92228273f6b4d8e15ccd8dbaf2b7, type: 2}
   firePoints:
   - {fileID: 1670932117}
   bulletShellEffect: {fileID: 595134074}

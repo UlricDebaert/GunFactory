@@ -18,6 +18,7 @@ MonoBehaviour:
   fireRate: 0.5
   bulletSpeed: 40
   bulletAngleShift: 1
+  bulletQuantityPerShootPoint: 1
   knockbackOnPlayer: 10
   muzzleflashPrefabs:
   - {fileID: 5353373965403994199, guid: ddfdf35d7436fd5489add9a538ebd496, type: 3}
