@@ -28,6 +28,7 @@ public class GunSO : ScriptableObject
     [Tooltip("Time before flash destruction")] public float muzzleflashLifeTime;
 
     [Header("Bullet Penetration")]
+    //public bool penetratingBullet;
     [Tooltip("Penetrated targets before destruction of bullet")] public int maxTargetsPenetration;
     [Tooltip("Damage multiplier for each target penetrated, multiply with number of targets penetrated")] public float penetrationMultiplier;
 
@@ -40,7 +41,7 @@ public class GunSO : ScriptableObject
     [Tooltip("Base audio pitch")] public float pitchBase = 1;
     [Tooltip("Pitch variation for each shot")] public float pitchVariation = 0;
 
-    [Header("Sprite")]
+    [Header("Animation")]
     [Tooltip("Base animation")] public AnimationClip idleAnimation;
     [Tooltip("Animation play for each shot")] public AnimationClip shootAnimation;
     [Tooltip("Animation when magazine is empty")] public AnimationClip emptyMagazineAnimation;
@@ -61,5 +62,11 @@ public class GunSO_Editor : Editor
         {
             script.cockingAnimation = EditorGUILayout.ObjectField("Cocking Animation", script.cockingAnimation, typeof(AnimationClip), true) as AnimationClip;
         }
+
+        //if(script.penetratingBullet)
+        //{
+        //    script.maxTargetsPenetration = EditorGUILayout.IntField("Max Targets Penetration", script.maxTargetsPenetration);
+        //    script.penetrationMultiplier = EditorGUILayout.FloatField("Penetration Multiplier", script.penetrationMultiplier);
+        //}
     }
 }

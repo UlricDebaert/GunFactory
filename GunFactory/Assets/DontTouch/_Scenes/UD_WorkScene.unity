@@ -4149,7 +4149,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: 983297f0c1e0b25488c0f2e884f06994, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4db95e8463980ea45969f5183eb8ee0c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4172,7 +4172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d800722482775459950aeae2af1adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunStats: {fileID: 11400000, guid: 43be92228273f6b4d8e15ccd8dbaf2b7, type: 2}
+  gunStats: {fileID: 11400000, guid: 5c597dbe2c26cdb4ebf9db7e2461de97, type: 2}
   firePoints:
   - {fileID: 1670932117}
   bulletShellEffect: {fileID: 595134074}
@@ -14921,7 +14921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8106218731510900254, guid: 8fd600aeac4dd424f831ba65059870f1, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8106218731510900254, guid: 8fd600aeac4dd424f831ba65059870f1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20052,7 +20052,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670932116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.57, y: 0, z: 0}
+  m_LocalPosition: {x: 1.216, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 200009937}
