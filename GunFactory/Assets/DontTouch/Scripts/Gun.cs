@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Custom Inspector
+using UnityEditor;
+
+
+[CreateAssetMenu]
 public class Gun : MonoBehaviour
 {
     [Tooltip("Gun stats reference")] public GunSO gunStats;
@@ -10,6 +15,8 @@ public class Gun : MonoBehaviour
     SpriteRenderer gunSprite;
     AudioSource audioSource;
     Animator anim;
+
+    public RuntimeAnimatorController animatorController;
 
     int currentAmmoCount;
     float reloadTimer;
@@ -212,5 +219,41 @@ public class Gun : MonoBehaviour
     void EmptyBarrel()
     {
         barrelEmpty = !barrelEmpty;
+    }
+}
+
+
+
+[CustomEditor(typeof(Gun))]
+public class Gun_Editor : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector(); 
+
+        Gun script = (Gun)target;
+
+        if (!script.gameObject.GetComponent<SpriteRenderer>())
+        {
+            script.gameObject.AddComponent<SpriteRenderer>();
+        }
+
+        if (!script.gameObject.GetComponent<Animator>())
+        {
+            script.gameObject.AddComponent<Animator>();
+        }
+
+        if(script.gameObject.GetComponent<Animator>() 
+            && (script.gameObject.GetComponent<Animator>().runtimeAnimatorController == null || script.animatorController) 
+            && script.animatorController != null)
+        {
+            script.gameObject.GetComponent<Animator>().runtimeAnimatorController = script.animatorController;
+        }
+
+        if (!script.gameObject.GetComponent<AudioSource>())
+        {
+            AudioSource audio = script.gameObject.AddComponent<AudioSource>();
+            audio.playOnAwake = false;
+        }
     }
 }
