@@ -235,7 +235,8 @@ public class Gun_Editor : Editor
 
         if (!script.gameObject.GetComponent<SpriteRenderer>())
         {
-            script.gameObject.AddComponent<SpriteRenderer>();
+            SpriteRenderer sprite = script.gameObject.AddComponent<SpriteRenderer>();
+            sprite.sortingOrder = 20;
         }
 
         if (!script.gameObject.GetComponent<Animator>())

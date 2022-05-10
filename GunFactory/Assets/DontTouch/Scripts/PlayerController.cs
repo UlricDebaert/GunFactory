@@ -8,6 +8,14 @@ public class PlayerController : MonoBehaviour
     public float speed;
     public Rigidbody2D rb;
 
+    [Header("Friction Forces")]
+    public AnimationCurve acceleration = AnimationCurve.EaseInOut(0, 0, 0.75f, 1);
+    public AnimationCurve decceleration = AnimationCurve.EaseInOut(0, 1, 2, 0);
+    float accelerationMultiplier;
+    float deccelerationMultiplier;
+    float timeSinceAccelerated;
+    float timeSinceDeccelerated;
+
     [Header("Jump")]
     public float jumpForce;
     public float airDragMultiplier;
@@ -54,14 +62,21 @@ public class PlayerController : MonoBehaviour
             {
                 horizontalInput = Input.GetAxisRaw("Horizontal");
 
-                rb.velocity = new Vector2(speed * horizontalInput, rb.velocity.y);
+                rb.velocity = new Vector2(speed * horizontalInput * accelerationMultiplier, rb.velocity.y);
+                //rb.AddForce(new Vector2(horizontalInput, 0) * speed, ForceMode2D.Force);
+
+                timeSinceAccelerated += Time.deltaTime;
+                timeSinceDeccelerated = 0;
 
                 ChangeAnimationState(playerWalk);
             }
 
             if (!Input.GetButton("Horizontal"))
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+                rb.velocity = new Vector2(rb.velocity.x * deccelerationMultiplier, rb.velocity.y);
+
+                timeSinceDeccelerated += Time.deltaTime;
+                timeSinceAccelerated = 0;
 
                 ChangeAnimationState(playerIdle);
             }
@@ -73,36 +88,34 @@ public class PlayerController : MonoBehaviour
             {
                 horizontalInput = Input.GetAxisRaw("Horizontal");
 
-                rb.velocity = new Vector2(speed * horizontalInput * airDragMultiplier, rb.velocity.y);
+                rb.velocity = new Vector2(speed * horizontalInput * airDragMultiplier * accelerationMultiplier, rb.velocity.y);
+                //rb.AddForce(new Vector2(horizontalInput, 0) * speed * airDragMultiplier, ForceMode2D.Force);
             }
 
             if (!Input.GetButton("Horizontal"))
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);
+                rb.velocity = new Vector2(rb.velocity.x * deccelerationMultiplier, rb.velocity.y);
             }
 
             ChangeAnimationState(playerJump);
         }
-
-        //if (horizontalInput>0)
-        //{
-        //    playerSprite.flipX = false;
-        //}
-        //if (horizontalInput<0)
-        //{
-        //    playerSprite.flipX = true;
-        //}
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             print("jump input");
             Jump();
         }
+
+        accelerationMultiplier = acceleration.Evaluate(timeSinceAccelerated);
+        deccelerationMultiplier = decceleration.Evaluate(timeSinceDeccelerated);
     }
 
     void Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        //rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.AddForce(new Vector2(horizontalInput, Vector2.up.y) * jumpForce, ForceMode2D.Impulse);
     }
 
     void UpdateGraphicLookingDir()
