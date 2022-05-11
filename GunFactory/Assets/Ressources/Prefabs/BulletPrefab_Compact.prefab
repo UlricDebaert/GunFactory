@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3067635313469748417}
   - component: {fileID: 8541207170944004687}
   m_Layer: 0
-  m_Name: Test_BulletPrefab
+  m_Name: BulletPrefab_Compact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: afeff3c9a012fb247a495f22d1dd9728, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5c9955f91e68d7a4db6a9042a1d7f10b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,7 +120,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015, y: 0}
+  m_Offset: {x: 0.033427835, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -131,7 +131,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.475, y: 0.25}
+  m_Size: {x: 0.5, y: 0.3}
   m_EdgeRadius: 0
 --- !u!114 &3067635313469748417
 MonoBehaviour:

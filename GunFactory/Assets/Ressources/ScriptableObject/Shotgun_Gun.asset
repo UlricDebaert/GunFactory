@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun_Gun
   m_EditorClassIdentifier: 
   fireMode: 2
-  bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
+  bulletPrefab: {fileID: 2485881281654894994, guid: 624aaad5e72a72547b0e5f3fe0215f7f, type: 3}
   bulletDamage: 10
   fireRate: 0.5
   bulletSpeed: 30

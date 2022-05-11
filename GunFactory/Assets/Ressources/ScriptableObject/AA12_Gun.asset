@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AA12_Gun
   m_EditorClassIdentifier: 
   fireMode: 0
-  bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
+  bulletPrefab: {fileID: 2485881281654894994, guid: 624aaad5e72a72547b0e5f3fe0215f7f, type: 3}
   bulletDamage: 5
   fireRate: 0.25
   bulletSpeed: 25
