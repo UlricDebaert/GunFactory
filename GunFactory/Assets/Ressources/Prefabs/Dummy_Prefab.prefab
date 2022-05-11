@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fdd4dcc089c70341a502952b650cc40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 5
   rb: {fileID: 7641447757271737077}
   airDragMultiplier: 0.5
   wallDetectionDistance: 0.75

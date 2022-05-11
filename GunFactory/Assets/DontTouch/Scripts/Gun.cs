@@ -16,8 +16,6 @@ public class Gun : MonoBehaviour
     AudioSource audioSource;
     Animator anim;
 
-    public RuntimeAnimatorController animatorController;
-
     int currentAmmoCount;
     float reloadTimer;
 
@@ -25,6 +23,8 @@ public class Gun : MonoBehaviour
     float fireRateTimer;
 
     [Tooltip("Particle system for bullet shell ejection")] public ParticleSystem bulletShellEffect;
+
+    public RuntimeAnimatorController animatorController;
 
     //specific to fire mode
     bool barrelEmpty;
