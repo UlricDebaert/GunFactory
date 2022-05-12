@@ -199,7 +199,8 @@ public class Gun : MonoBehaviour
         if(transform.eulerAngles.z >= 90 && transform.eulerAngles.z <= 260)
         {
             gunSprite.flipY = true;
-            bulletShellEffect.gameObject.transform.localEulerAngles = new Vector3(90, bulletShellEffect.gameObject.transform.eulerAngles.y, bulletShellEffect.gameObject.transform.eulerAngles.z);
+            if(bulletShellEffect!=null)
+                bulletShellEffect.gameObject.transform.localEulerAngles = new Vector3(90, bulletShellEffect.gameObject.transform.eulerAngles.y, bulletShellEffect.gameObject.transform.eulerAngles.z);
         }
         else
         {
