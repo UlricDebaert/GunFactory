@@ -10,7 +10,7 @@ using UnityEditor;
 public class Gun : MonoBehaviour
 {
     [Tooltip("Gun stats reference")] public GunSO gunStats;
-    [Tooltip("Gun's fire points")] public Transform[] firePoints;
+    [HideInInspector] public Transform firePoint;
 
     SpriteRenderer gunSprite;
     AudioSource audioSource;
@@ -22,7 +22,8 @@ public class Gun : MonoBehaviour
     bool canShoot;
     float fireRateTimer;
 
-    [Tooltip("Particle system for bullet shell ejection")] public ParticleSystem bulletShellEffect;
+    [Tooltip("Particle system for bullet shell ejection")] public GameObject bulletShellPrefab;
+    [HideInInspector] public ParticleSystem bulletShellEffect;
 
     public RuntimeAnimatorController animatorController;
 
@@ -106,24 +107,21 @@ public class Gun : MonoBehaviour
         if (gunStats.shootAnimation != null)
             anim.Play(gunStats.shootAnimation.name.ToString());
 
-        for (int i = 0; i < firePoints.Length; i++)
+        for (int j = 1; j <= gunStats.bulletQuantityPerShootPoint; j++)
         {
-            for (int j = 1; j <= gunStats.bulletQuantityPerShootPoint; j++)
-            {
-                GameObject bullet = Instantiate(gunStats.bulletPrefab, firePoints[i].position, firePoints[i].transform.rotation * Quaternion.Euler(0.0f, 0.0f, Random.Range(-gunStats.bulletAngleShift, gunStats.bulletAngleShift)));
-                bullet.GetComponent<Rigidbody2D>().AddForce(gunStats.bulletSpeed * bullet.transform.right.normalized, ForceMode2D.Impulse);
-                bullet.GetComponent<Bullet>().bulletDamage = gunStats.bulletDamage;
-                bullet.GetComponent<Bullet>().maxTargetsPenetration = gunStats.maxTargetsPenetration;
-                bullet.GetComponent<Bullet>().penetrationMultiplier = gunStats.penetrationMultiplier;
-                //bullet.GetComponent<Bullet>().knockbackOnTarget = gunStats.knockbackOnTarget;
-            }
+            GameObject bullet = Instantiate(gunStats.bulletPrefab, firePoint.position, firePoint.transform.rotation * Quaternion.Euler(0.0f, 0.0f, Random.Range(-gunStats.bulletAngleShift, gunStats.bulletAngleShift)));
+            bullet.GetComponent<Rigidbody2D>().AddForce(gunStats.bulletSpeed * bullet.transform.right.normalized, ForceMode2D.Impulse);
+            bullet.GetComponent<Bullet>().bulletDamage = gunStats.bulletDamage;
+            bullet.GetComponent<Bullet>().maxTargetsPenetration = gunStats.maxTargetsPenetration;
+            bullet.GetComponent<Bullet>().penetrationMultiplier = gunStats.penetrationMultiplier;
+            //bullet.GetComponent<Bullet>().knockbackOnTarget = gunStats.knockbackOnTarget;
         }
 
 
         if (gunStats.muzzleflashPrefabs.Length != 0)
         {
             int rand = Random.Range(0, gunStats.muzzleflashPrefabs.Length - 1);
-            GameObject flash = Instantiate(gunStats.muzzleflashPrefabs[rand], firePoints[0].position, firePoints[0].transform.rotation, gameObject.transform);
+            GameObject flash = Instantiate(gunStats.muzzleflashPrefabs[rand], firePoint.position, firePoint.transform.rotation, gameObject.transform);
             Destroy(flash, gunStats.muzzleflashLifeTime);
         }
 
@@ -256,6 +254,39 @@ public class Gun_Editor : Editor
         {
             AudioSource audio = script.gameObject.AddComponent<AudioSource>();
             audio.playOnAwake = false;
+        }
+
+        if(script.firePoint == null)
+        {
+            GameObject shootPoint = new GameObject();
+            shootPoint.transform.parent = script.transform;
+            shootPoint.name = "Shoot Point";
+            script.firePoint = shootPoint.transform;
+        }
+
+        //if (script.transform.Find(script.bulletShellPrefab.name))
+        //{
+        //    GameObject bulletShell = Instantiate(script.bulletShellPrefab, script.transform);
+        //    script.bulletShellEffect = script.bulletShellPrefab.GetComponent<ParticleSystem>();
+        //}
+
+        if(script.bulletShellEffect != null && script.bulletShellPrefab != null)
+        {
+            if (script.bulletShellPrefab.name != script.bulletShellEffect.name)
+            {
+                DestroyImmediate(script.bulletShellEffect.gameObject);
+                GameObject bulletShell = Instantiate(script.bulletShellPrefab, script.transform);
+                script.bulletShellEffect = bulletShell.GetComponent<ParticleSystem>();
+                bulletShell.name = script.bulletShellPrefab.name;
+            }
+        }
+
+        if(script.bulletShellEffect == null && script.bulletShellPrefab != null)
+        {
+            Debug.Log("Instantiate");
+            GameObject bulletShell = Instantiate(script.bulletShellPrefab, script.transform);
+            script.bulletShellEffect = bulletShell.GetComponent<ParticleSystem>();
+            bulletShell.name = script.bulletShellPrefab.name;
         }
     }
 }
