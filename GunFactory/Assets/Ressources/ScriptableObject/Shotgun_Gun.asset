@@ -32,8 +32,10 @@ MonoBehaviour:
   magazine: 6
   reloadTime: 1.5
   shootAudio: {fileID: 8300000, guid: 53a00e1684beaf04aada5c65d430f36d, type: 3}
+  volumeBase: 1
   pitchBase: 1
   pitchVariation: 0
+  gunSprite: {fileID: 21300000, guid: 3d8822ea29758294e84bdaa5ac8c1038, type: 3}
   idleAnimation: {fileID: 7400000, guid: 6891f75a87afb4d468e732ab7144bfb8, type: 2}
   shootAnimation: {fileID: 7400000, guid: 8e69149b0b3c5274bb278d9dc52bc4b1, type: 2}
   emptyMagazineAnimation: {fileID: 7400000, guid: b6ea3480616cda44185ee7e65f3b8a18, type: 2}

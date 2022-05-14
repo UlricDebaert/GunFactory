@@ -141,6 +141,7 @@ public class Gun : MonoBehaviour
         if (gunStats.shootAudio != null)
         {
             audioSource.clip = gunStats.shootAudio;
+            audioSource.volume = gunStats.volumeBase;
             audioSource.Play();
             audioSource.pitch=gunStats.pitchBase+Random.Range(-gunStats.pitchVariation, gunStats.pitchVariation);
         }
@@ -238,6 +239,18 @@ public class Gun_Editor : Editor
             sprite.sortingOrder = 20;
         }
 
+        if(script.gunStats != null)
+        {
+            if (script.gunStats.gunSprite != null)
+            {
+                if (script.gameObject.GetComponent<SpriteRenderer>().sprite == null || script.gameObject.GetComponent<SpriteRenderer>().sprite != script.gunStats.gunSprite)
+                {
+                    Debug.Log("Sprite Change");
+                    script.gameObject.GetComponent<SpriteRenderer>().sprite = script.gunStats.gunSprite;
+                }
+            }
+        }
+
         if (!script.gameObject.GetComponent<Animator>())
         {
             script.gameObject.AddComponent<Animator>();
@@ -263,12 +276,6 @@ public class Gun_Editor : Editor
             shootPoint.name = "Shoot Point";
             script.firePoint = shootPoint.transform;
         }
-
-        //if (script.transform.Find(script.bulletShellPrefab.name))
-        //{
-        //    GameObject bulletShell = Instantiate(script.bulletShellPrefab, script.transform);
-        //    script.bulletShellEffect = script.bulletShellPrefab.GetComponent<ParticleSystem>();
-        //}
 
         if(script.bulletShellEffect != null && script.bulletShellPrefab != null)
         {

@@ -16,7 +16,7 @@ public class GunSO : ScriptableObject
     [Tooltip("Bullet damage on target")] public int bulletDamage;
     [Tooltip("Time between each shot")] public float fireRate;
     [Tooltip("Force apply on bullet on shot")] public float bulletSpeed;
-    [Tooltip("Reduce gun accuracy")]public float bulletAngleShift;
+    [Tooltip("Reduce gun accuracy")] [Range(0.0f, 90.0f)] public float bulletAngleShift;
     [Tooltip("Bullet quantity instantiate on each shot")]public float bulletQuantityPerShootPoint = 1;
 
     [Header("Knockback")]
@@ -25,12 +25,12 @@ public class GunSO : ScriptableObject
 
     [Header("Muzzleflash")]
     [Tooltip("Randomized flash instantiate for each shot")] public GameObject[] muzzleflashPrefabs;
-    [Tooltip("Time before flash destruction")] public float muzzleflashLifeTime;
+    [Tooltip("Time before flash destruction")] [Range(0.0f, 0.1f)] public float muzzleflashLifeTime;
 
     [Header("Bullet Penetration")]
     //public bool penetratingBullet;
     [Tooltip("Penetrated targets before destruction of bullet")] public int maxTargetsPenetration;
-    [Tooltip("Damage multiplier for each target penetrated, multiply with number of targets penetrated")] public float penetrationMultiplier;
+    [Tooltip("Damage multiplier for each target penetrated, multiply with number of targets penetrated")] [Range(0.0f,1.0f)] public float penetrationMultiplier;
 
     [Header("Reload")]
     [Tooltip("Magazine size")] public int magazine;
@@ -38,10 +38,12 @@ public class GunSO : ScriptableObject
 
     [Header("Audio")]
     [Tooltip("Audio play for each shot")] public AudioClip shootAudio;
+    [Tooltip("Base audio pitch")] public float volumeBase = 1;
     [Tooltip("Base audio pitch")] public float pitchBase = 1;
     [Tooltip("Pitch variation for each shot")] public float pitchVariation = 0;
 
-    [Header("Animation")]
+    [Header("Graphics")]
+    [Tooltip("Set sprite for Editor Mode")] public Sprite gunSprite;
     [Tooltip("Base animation")] public AnimationClip idleAnimation;
     [Tooltip("Animation play for each shot")] public AnimationClip shootAnimation;
     [Tooltip("Animation when magazine is empty")] public AnimationClip emptyMagazineAnimation;
