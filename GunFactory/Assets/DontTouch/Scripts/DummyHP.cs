@@ -17,9 +17,15 @@ public class DummyHP : MonoBehaviour
 
     [Header("Graphics")]
     public Animator anim;
+    public SpriteRenderer sprite;
+    public Material enemyFlashMat;
+    Material defaultMat;
+
 
     void Start()
     {
+        defaultMat = sprite.material;
+
         isDead = false;
         currentHP = totalHP;
         if (healthBarUIFill != null) UpdateHealthBar();
@@ -29,7 +35,14 @@ public class DummyHP : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (!isDead)
+        {
+            sprite.material = enemyFlashMat;
+            Invoke("ResetMaterial", 0.05f);
+        }
+
         currentHP -= damage;
+
         if (healthBarUIFill != null) UpdateHealthBar();
         if (currentHP <= 0) Death();
     }
@@ -47,5 +60,10 @@ public class DummyHP : MonoBehaviour
     {
         healthBarUIFill.fillAmount = (float) currentHP / totalHP;
         healthBarUIFill.color = healthBarColor.Evaluate((float)currentHP / totalHP);
+    }
+
+    void ResetMaterial()
+    {
+        sprite.material = defaultMat;
     }
 }

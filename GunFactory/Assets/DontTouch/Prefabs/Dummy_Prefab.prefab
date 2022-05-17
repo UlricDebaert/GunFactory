@@ -474,6 +474,8 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   anim: {fileID: 7641447757319560652}
+  sprite: {fileID: 7641447757319560659}
+  enemyFlashMat: {fileID: 2100000, guid: 5fb7c602d20f3e641901b8f5f3f807a0, type: 2}
 --- !u!1 &7641447757319560657
 GameObject:
   m_ObjectHideFlags: 0

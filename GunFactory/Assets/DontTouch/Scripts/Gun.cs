@@ -142,7 +142,7 @@ public class Gun : MonoBehaviour
         {
             audioSource.clip = gunStats.shootAudio;
             audioSource.volume = gunStats.volumeBase;
-            audioSource.Play();
+            audioSource.PlayOneShot(audioSource.clip);
             audioSource.pitch=gunStats.pitchBase+Random.Range(-gunStats.pitchVariation, gunStats.pitchVariation);
         }
 
