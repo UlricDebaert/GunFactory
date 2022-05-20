@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bccc5d5bbc863a44b3ed2ba95551f5a, type: 3}
+  m_Name: BabibaGUN
+  m_EditorClassIdentifier: 
+  fireMode: 0
+  bulletPrefab: {fileID: 2485881281654894994, guid: 624aaad5e72a72547b0e5f3fe0215f7f, type: 3}
+  bulletDamage: 5
+  fireRate: 0.05
+  bulletSpeed: 50
+  bulletAngleShift: 12
+  bulletQuantityPerShootPoint: 1
+  knockbackOnPlayer: 4
+  muzzleflashPrefabs:
+  - {fileID: 5353373965403994199, guid: ddfdf35d7436fd5489add9a538ebd496, type: 3}
+  - {fileID: 6498316776073974490, guid: 1bf752da77c8ab649875ea0922342bd9, type: 3}
+  - {fileID: 5694424060417533942, guid: 4233c32a74a5a3c408b80fe8d8d6d978, type: 3}
+  - {fileID: 4751557626888455584, guid: b90346d2ab701934b83a139156d30f9d, type: 3}
+  - {fileID: 5279753375403769664, guid: 4502c2717780c3841bcbde49e7cce876, type: 3}
+  muzzleflashLifeTime: 0.025
+  maxTargetsPenetration: 1
+  penetrationMultiplier: 0.075
+  magazine: 150
+  reloadTime: 1
+  shootAudio: {fileID: 8300000, guid: e6cf184d2935dd444aa7d95a31b1b824, type: 3}
+  volumeBase: 1
+  pitchBase: 1
+  pitchVariation: 0
+  gunSprite: {fileID: 21300000, guid: 686e3e10525bfa84db621f2aa40227cc, type: 3}
+  idleAnimation: {fileID: 7400000, guid: b63f75704e075c747a595a42782db36e, type: 2}
+  shootAnimation: {fileID: 7400000, guid: 94c82cec30a68554f8ce9ced0e96b6cc, type: 2}
+  emptyMagazineAnimation: {fileID: 7400000, guid: 8afe9cf0a34e02e4690df61f269774b6, type: 2}
+  cockingAnimation: {fileID: 0}

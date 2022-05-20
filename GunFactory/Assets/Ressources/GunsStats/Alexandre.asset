@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bccc5d5bbc863a44b3ed2ba95551f5a, type: 3}
+  m_Name: Alexandre
+  m_EditorClassIdentifier: 
+  fireMode: 1
+  bulletPrefab: {fileID: 2485881281654894994, guid: 49023d5d3dd7b5d4c9503b8e655aae7c, type: 3}
+  bulletDamage: 5
+  fireRate: 0.25
+  bulletSpeed: 1
+  bulletAngleShift: 28.4
+  bulletQuantityPerShootPoint: 250
+  knockbackOnPlayer: 0
+  muzzleflashPrefabs:
+  - {fileID: 5694424060417533942, guid: 4233c32a74a5a3c408b80fe8d8d6d978, type: 3}
+  muzzleflashLifeTime: 0.05
+  maxTargetsPenetration: 0
+  penetrationMultiplier: 0.5
+  magazine: 2
+  reloadTime: 3
+  shootAudio: {fileID: 0}
+  volumeBase: 1
+  pitchBase: 1
+  pitchVariation: 0
+  gunSprite: {fileID: 21300000, guid: b12322cbeab6a5d41b1d7523ba3e7059, type: 3}
+  idleAnimation: {fileID: 7400000, guid: a467d3823da0c1b418e4e8f9327b5088, type: 2}
+  shootAnimation: {fileID: 7400000, guid: 2d1861501579c3f4e8a901bdb993e64e, type: 2}
+  emptyMagazineAnimation: {fileID: 7400000, guid: 501240675343c1a43b584ca09e4fd6b2, type: 2}
+  cockingAnimation: {fileID: 7400000, guid: dc3b50acb719c024da07ec34f7263c22, type: 2}
