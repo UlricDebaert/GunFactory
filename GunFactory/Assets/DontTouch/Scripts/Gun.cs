@@ -22,7 +22,7 @@ public class Gun : MonoBehaviour
     bool canShoot;
     float fireRateTimer;
 
-    [Tooltip("Particle system for bullet shell ejection")] public GameObject bulletShellPrefab;
+    [Tooltip("Particle system for bullet shell ejection")] [HideInInspector] public GameObject bulletShellPrefab;
     [HideInInspector] public ParticleSystem bulletShellEffect;
 
     public RuntimeAnimatorController animatorController;
@@ -277,7 +277,9 @@ public class Gun_Editor : Editor
             script.firePoint = shootPoint.transform;
         }
 
-        if(script.bulletShellEffect != null && script.bulletShellPrefab != null)
+        if (script.gunStats.bulletShellEffect != null) script.bulletShellPrefab = script.gunStats.bulletShellEffect;
+
+        if (script.bulletShellEffect != null && script.bulletShellPrefab != null)
         {
             if (script.bulletShellPrefab.name != script.bulletShellEffect.name)
             {

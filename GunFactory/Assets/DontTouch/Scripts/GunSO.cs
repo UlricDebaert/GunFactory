@@ -36,6 +36,9 @@ public class GunSO : ScriptableObject
     [Tooltip("Magazine size")] public int magazine = 20;
     [Tooltip("Time to reload weapon")] public float reloadTime = 1;
 
+    [Header("Bullet Shell Effect")]
+    [Tooltip("Bullet shell instantiate on shoot")] public GameObject bulletShellEffect;
+
     [Header("Audio")]
     [Tooltip("Audio play for each shot")] public AudioClip shootAudio;
     [Tooltip("Base audio pitch")] public float volumeBase = 1;
@@ -55,6 +58,7 @@ public class GunSO : ScriptableObject
         if (fireRate < 0) fireRate = 0;
         if (bulletSpeed < 0) bulletSpeed = 0;
         if (bulletQuantityPerShootPoint < 1) bulletQuantityPerShootPoint = 1;
+        if (bulletQuantityPerShootPoint > 100) bulletQuantityPerShootPoint = 100;
         if (maxTargetsPenetration < 0) maxTargetsPenetration = 0;
         if (magazine < 1) magazine = 1;
         if (reloadTime < 0) reloadTime = 0;
@@ -84,5 +88,15 @@ public class GunSO_Editor : Editor
         //    script.maxTargetsPenetration = EditorGUILayout.IntField("Max Targets Penetration", script.maxTargetsPenetration);
         //    script.penetrationMultiplier = EditorGUILayout.FloatField("Penetration Multiplier", script.penetrationMultiplier);
         //}
+
+        if (GUILayout.Button("Create Gun"))
+        {
+            Undo.RecordObject(GameObject.Find("Player").transform, "create gun");
+            GameObject gun = new GameObject();
+            gun.name = script.name;
+            gun.transform.parent = GameObject.Find("Player").transform;
+            gun.AddComponent<Gun>();
+            gun.GetComponent<Gun>().gunStats = script;
+        }
     }
 }
