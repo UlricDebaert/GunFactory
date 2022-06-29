@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Animations;
 
 //Custom Inspector
 using UnityEditor;
@@ -15,6 +16,7 @@ public class Gun : MonoBehaviour
     SpriteRenderer gunSprite;
     AudioSource audioSource;
     Animator anim;
+    AnimatorOverrideController animOverrideController;
 
     int currentAmmoCount;
     float reloadTimer;
@@ -25,10 +27,13 @@ public class Gun : MonoBehaviour
     [Tooltip("Particle system for bullet shell ejection")] [HideInInspector] public GameObject bulletShellPrefab;
     [HideInInspector] public ParticleSystem bulletShellEffect;
 
-    public RuntimeAnimatorController animatorController;
+    //public RuntimeAnimatorController animatorController;
 
     //specific to fire mode
     bool barrelEmpty;
+
+    [Header("Debug")]
+    public AnimatorController originalAnimationController;
 
     void Start()
     {
@@ -36,7 +41,9 @@ public class Gun : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
 
-        anim.Play(gunStats.idleAnimation.name.ToString());
+        InitAnimOverrideController();
+
+        anim.Play("Gun_Idle_Anim");
 
         canShoot = false;
         barrelEmpty = false;
@@ -83,7 +90,7 @@ public class Gun : MonoBehaviour
                     Invoke("EmptyBarrel", 0.1f);
 
                     if(gunStats.cockingAnimation != null)
-                        anim.Play(gunStats.cockingAnimation.name.ToString());
+                        anim.Play("Gun_Cocking_Anim");
 
                     bulletShellEffect.Play();
                 }
@@ -105,7 +112,7 @@ public class Gun : MonoBehaviour
     void Fire()
     {
         if (gunStats.shootAnimation != null)
-            anim.Play(gunStats.shootAnimation.name.ToString());
+            anim.Play("Gun_Shoot_Anim");
 
         for (int j = 1; j <= gunStats.bulletQuantityPerShootPoint; j++)
         {
@@ -220,6 +227,23 @@ public class Gun : MonoBehaviour
     {
         barrelEmpty = !barrelEmpty;
     }
+
+    void InitAnimOverrideController()
+    {
+        animOverrideController = new AnimatorOverrideController(AssetDatabase.LoadAssetAtPath<AnimatorController>("Assets/DontTouch/Animator/Guns_Animator.controller")); //Must Write the exact Controller path
+        //print("Path to reference : " + AssetDatabase.GetAssetPath(originalAnimationController)); //Print Controller Asset Path
+
+        if (originalAnimationController != null) 
+            animOverrideController = new AnimatorOverrideController(AssetDatabase.LoadAssetAtPath<AnimatorController>(AssetDatabase.GetAssetPath(originalAnimationController)));
+        
+        anim.runtimeAnimatorController = animOverrideController;
+
+        animOverrideController["Gun_Shoot_Anim"] = gunStats.shootAnimation;
+        animOverrideController["Gun_Idle_Anim"] = gunStats.idleAnimation;
+        animOverrideController["Gun_EmptyMag_Anim"] = gunStats.emptyMagazineAnimation;
+        if(gunStats.fireMode == GunSO.shootType.pump)
+            animOverrideController["Gun_Cocking_Anim"] = gunStats.cockingAnimation;
+    }
 }
 
 
@@ -256,12 +280,17 @@ public class Gun_Editor : Editor
             script.gameObject.AddComponent<Animator>();
         }
 
-        if(script.gameObject.GetComponent<Animator>() 
-            && (script.gameObject.GetComponent<Animator>().runtimeAnimatorController == null || script.animatorController) 
-            && script.animatorController != null)
-        {
-            script.gameObject.GetComponent<Animator>().runtimeAnimatorController = script.animatorController;
-        }
+        //if(script.gameObject.GetComponent<Animator>() 
+        //    && (script.gameObject.GetComponent<Animator>().runtimeAnimatorController == null || script.animatorController) 
+        //    && script.animatorController != null)
+        //{
+        //    script.gameObject.GetComponent<Animator>().runtimeAnimatorController = script.animatorController;
+        //}
+
+        //if (script.gameObject.GetComponent<Animator>())
+        //{
+        //    script.gameObject.GetComponent<Animator>().runtimeAnimatorController = AssetDatabase.LoadAssetAtPath<AnimatorOverrideController>("Guns_Animator_Override");
+        //}
 
         if (!script.gameObject.GetComponent<AudioSource>())
         {
