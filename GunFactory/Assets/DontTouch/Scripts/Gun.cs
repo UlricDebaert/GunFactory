@@ -72,7 +72,7 @@ public class Gun : MonoBehaviour
                 if (Input.GetButton("Fire1") && canShoot && currentAmmoCount > 0)
                 {
                     Fire();
-                    bulletShellEffect.Play();
+                    if(bulletShellEffect != null) bulletShellEffect.Play();
                 }
                 break;
 
@@ -80,7 +80,7 @@ public class Gun : MonoBehaviour
                 if (Input.GetButtonDown("Fire1") && canShoot && currentAmmoCount > 0)
                 {
                     Fire();
-                    bulletShellEffect.Play();
+                    if (bulletShellEffect != null) bulletShellEffect.Play();
                 }
                 break;
 
@@ -92,7 +92,7 @@ public class Gun : MonoBehaviour
                     if(gunStats.cockingAnimation != null)
                         anim.Play("Gun_Cocking_Anim");
 
-                    bulletShellEffect.Play();
+                    if (bulletShellEffect != null) bulletShellEffect.Play();
                 }
                 if (Input.GetButtonDown("Fire1") && canShoot && currentAmmoCount > 0 && !barrelEmpty)
                 {
