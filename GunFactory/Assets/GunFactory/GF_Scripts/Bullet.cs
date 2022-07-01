@@ -41,21 +41,12 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //if (collision.gameObject.layer == hittableLayers)
-        //{
-        //    print("hit" + collision.gameObject.layer);
-        //    DestroyItself();
-        //}
         if ((wallLayers & (1 << collision.transform.gameObject.layer)) > 0)
         {
             DestroyItself();
         }
         if ((dummyLayers & (1 << collision.transform.gameObject.layer)) > 0)
         {
-            collision.GetComponent<DummyHP>().TakeDamage(Mathf.RoundToInt(bulletDamage/(1+targetPenetrated*penetrationMultiplier)));
-
-            //collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(collision.transform.position.x-gameObject.transform.position.x,0)*knockbackOnTarget, ForceMode2D.Impulse);
-
             if (targetPenetrated >= maxTargetsPenetration) DestroyItself();
             else targetPenetrated++;
         }

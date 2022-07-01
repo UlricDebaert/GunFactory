@@ -103,11 +103,6 @@ public class Gun : MonoBehaviour
 
         }
     }
-    //    if (Input.GetButton("Fire1") && canShoot && currentAmmoCount>0)
-    //    {
-    //        Fire();
-    //    }
-    //}
 
     void Fire()
     {
